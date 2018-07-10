@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var topMenuConstraint: NSLayoutConstraint!
     var topConstraint : CGFloat = 0.0
     
+    @IBOutlet weak var bottomMenuBottomConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var topMenu: UIView!
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -188,12 +190,46 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate,UIScrollViewD
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if firstTimeBottomScrollFlag{
+            firstTimeUpScrollFlag = false
+            
+            UIView.animate(withDuration: 0.5) {
+                DispatchQueue.main.async {
+                    self.topMenuConstraint.constant = 0;
+                    self.view.layoutIfNeeded()
+                }
+
+            }
+        }
         
+//        if firstTimeUpScrollFlag{
+//            firstTimeBottomScrollFlag = false
+//            UIView.animate(withDuration: 0.5) {
+//                DispatchQueue.main.async {
+//                    self.bottomMenuBottomConstraint.constant = 0.0;
+//                    self.view.layoutIfNeeded()
+//                }
+//
+//            }
+//        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         if scrollView.contentOffset.y < 0 {
+            
+            if !firstTimeBottomScrollFlag{
+                
+                UIView.animate(withDuration: 0.5) {
+                    DispatchQueue.main.async {
+                        self.bottomMenuBottomConstraint.constant = -44.0;
+                        self.view.layoutIfNeeded()
+                    }
+                    self.firstTimeBottomScrollFlag = true
+                    
+                }
+                
+            }
           
         }else{
             if !firstTimeUpScrollFlag{

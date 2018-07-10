@@ -116,19 +116,20 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="an9-h7-7eK" secondAttribute="trailing" id="2Xw-26-88h"/>
                             <constraint firstItem="TyL-o2-W7M" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="43c-xp-vdz"/>
+                            <constraint firstItem="V8j-jq-2hS" firstAttribute="top" secondItem="an9-h7-7eK" secondAttribute="bottom" id="540-ND-Qn6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="V8j-jq-2hS" secondAttribute="bottom" id="Hea-4E-3vZ"/>
                             <constraint firstItem="V8j-jq-2hS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OkM-Bz-6ep"/>
                             <constraint firstItem="TyL-o2-W7M" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Win-6D-U1f"/>
                             <constraint firstItem="an9-h7-7eK" firstAttribute="top" secondItem="TyL-o2-W7M" secondAttribute="bottom" id="XNt-U9-awK"/>
                             <constraint firstItem="TyL-o2-W7M" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="XP4-s0-FwQ"/>
                             <constraint firstItem="V8j-jq-2hS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cIZ-UI-SZQ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="an9-h7-7eK" secondAttribute="bottom" constant="44" id="k0I-tR-kJL"/>
                             <constraint firstItem="an9-h7-7eK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uAP-Ao-MWw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="yjY-sU-Gjo"/>
                     <connections>
+                        <outlet property="bottomMenuBottomConstraint" destination="Hea-4E-3vZ" id="FDQ-Cr-tZE"/>
                         <outlet property="mediaWikiTableView" destination="an9-h7-7eK" id="25D-0H-WCk"/>
                         <outlet property="searchTextField" destination="csV-ag-GCJ" id="bkQ-lM-ekl"/>
                         <outlet property="topMenu" destination="TyL-o2-W7M" id="J0F-aT-XgV"/>

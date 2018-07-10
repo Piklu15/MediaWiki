@@ -9,9 +9,12 @@
 import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var mediaWikiTableView: UITableView!
-    fileprivate var fuudelArray = [SearchItemModel]()
-    fileprivate var filteredProductArray = [SearchItemModel]()
+    fileprivate var searchItem = [SearchItemModel]()
+    fileprivate var filteredItemArray = [SearchItemModel]()
     let searchController = UISearchController(searchResultsController: nil)
+    
+    let dummyBookmark = [SearchItemModel(ProductName: "##Bookmarks1", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 2", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 3", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 4", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 5 ", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 )
+        ]
     
     
     @IBOutlet weak var searchTextField: UITextField!
@@ -22,7 +25,7 @@ class ViewController: UIViewController {
         
         // Do any additional setup after loading the view, typically from a nib.
         let _ = customActivityIndicatory(self.view, startAnimate: true)
-        self.getFuudelData()
+        self.getDummyWikiResult()
         self.registerCutomCell()
         
         
@@ -61,13 +64,24 @@ class ViewController: UIViewController {
     
     @IBAction func searchItem(_ sender: UIButton) {
         
+        self.getDummyWikiResult()
+        
     }
     
     @IBAction func clearSearch(_ sender: UIButton) {
         
         self.searchTextField.text = nil
+        self.showBookMarks()
         
     }
+    
+    func showBookMarks(){
+        self.filteredItemArray = self.dummyBookmark
+        DispatchQueue.main.async {
+            self.mediaWikiTableView.reloadData()
+        }
+    }
+    
     
     func addSearchController(){
         searchController.searchResultsUpdater = self
@@ -79,7 +93,7 @@ class ViewController: UIViewController {
     }
     
     func filterProductForSearchText(_ searchText: String) {
-        filteredProductArray = fuudelArray.filter({( product : SearchItemModel) -> Bool in
+        filteredItemArray = searchItem.filter({( product : SearchItemModel) -> Bool in
             
             if searchBarIsEmpty() {
                 return true
@@ -125,12 +139,12 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
     // .....Pragma mark - UITableViewDataSource & UITableViewDelegate implementation starts.....
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if filteredProductArray.isEmpty{
+        if filteredItemArray.isEmpty{
             showEmptyProduct()
         }else{
             self.mediaWikiTableView.backgroundView = nil
         }
-        return filteredProductArray.count
+        return filteredItemArray.count
     }
     
     
@@ -138,7 +152,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let fuddelCell = tableView.dequeueReusableCell(withIdentifier: "SearchItemCell", for: indexPath) as! SearchItemCell
        // fuddelCell.delegate = self
-        let tempFuudelData = filteredProductArray[indexPath.row] as SearchItemModel
+        let tempFuudelData = filteredItemArray[indexPath.row] as SearchItemModel
         fuddelCell.fuudel = tempFuudelData
         
         return fuddelCell
@@ -151,7 +165,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
         
         
         let wikiDetailController = self.storyboard?.instantiateViewController(withIdentifier: "wikidetail") as? WikiDetailController
-        let selectedItem = filteredProductArray[indexPath.row] as SearchItemModel
+        let selectedItem = filteredItemArray[indexPath.row] as SearchItemModel
         wikiDetailController?.searchItemDetailModel = selectedItem
         
         DispatchQueue.main.async {
@@ -188,7 +202,7 @@ extension ViewController : UISearchResultsUpdating{
 
 extension ViewController{
     
-    fileprivate func getFuudelData(){
+    fileprivate func getDummyWikiResult(){
         let urlEndPoint: String = "http://77.68.80.27:4010/marketplaceapi/getsubmenulistbycategoryid?&categoryid=351&pageindex=1&pagesize=1000&resturentid=1"
         guard let url = URL(string: urlEndPoint) else {
             print("Error: cannot create URL")
@@ -227,16 +241,16 @@ extension ViewController{
                 if  let porductArray = rootDict["data"] as? [[String : Any]]{
                     
                     for product in porductArray{
-                        self.fuudelArray.append(SearchItemModel(ProductName: product["ProductName"] as! String, SDetails: product["Details"] as! String, Price:product["Price"] as! Double))
+                        self.searchItem.append(SearchItemModel(ProductName: product["ProductName"] as! String, SDetails: product["Details"] as! String, Price:product["Price"] as! Double))
                     }
                 }
                 
-                if !self.fuudelArray.isEmpty{
+                if !self.searchItem.isEmpty{
                     DispatchQueue.main.async {
                         let _ = self.customActivityIndicatory(self.view, startAnimate: false)
                         self.addSearchController()
                         self.configureTableViewDelegate()
-                        self.filteredProductArray = self.fuudelArray
+                        self.filteredItemArray = self.searchItem
                         self.mediaWikiTableView.reloadData()
                     }
                 }

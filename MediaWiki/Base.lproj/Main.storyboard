@@ -131,6 +131,8 @@
                     <connections>
                         <outlet property="mediaWikiTableView" destination="an9-h7-7eK" id="25D-0H-WCk"/>
                         <outlet property="searchTextField" destination="csV-ag-GCJ" id="bkQ-lM-ekl"/>
+                        <outlet property="topMenu" destination="TyL-o2-W7M" id="J0F-aT-XgV"/>
+                        <outlet property="topMenuConstraint" destination="43c-xp-vdz" id="oEs-aB-Myr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

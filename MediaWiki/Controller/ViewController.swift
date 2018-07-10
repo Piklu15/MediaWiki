@@ -11,9 +11,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var mediaWikiTableView: UITableView!
     fileprivate var searchItem = [SearchItemModel]()
     fileprivate var filteredItemArray = [SearchItemModel]()
+    
+    var firstTimeUpScrollFlag = false
+    var firstTimeBottomScrollFlag = false
+    
+    @IBOutlet weak var topMenuConstraint: NSLayoutConstraint!
+    var topConstraint : CGFloat = 0.0
+    
+    @IBOutlet weak var topMenu: UIView!
+    
     let searchController = UISearchController(searchResultsController: nil)
     
-    let dummyBookmark = [SearchItemModel(ProductName: "##Bookmarks1", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 2", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 3", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 4", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 5 ", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 )
+    let dummyBookmark = [SearchItemModel(ProductName: "##Bookmarks1", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 2", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 3", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 4", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 5 ", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 3", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 4", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 5 ", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 3", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 4", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 5 ", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 3", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 4", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 5 ", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 3", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 4", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 5 ", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 3", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 4", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 ),SearchItemModel(ProductName: "##Bookmarks 5 ", SDetails: "https://www.mediawiki.org/wiki/API:Main_page", Price:0.0 )
         ]
     
     
@@ -27,6 +36,8 @@ class ViewController: UIViewController {
         let _ = customActivityIndicatory(self.view, startAnimate: true)
         self.getDummyWikiResult()
         self.registerCutomCell()
+        
+        
         
         
         
@@ -134,7 +145,7 @@ class ViewController: UIViewController {
     
     
 }
-extension ViewController:UITableViewDataSource,UITableViewDelegate{
+extension ViewController:UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate{
     
     // .....Pragma mark - UITableViewDataSource & UITableViewDelegate implementation starts.....
     
@@ -175,6 +186,37 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
         
         
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView.contentOffset.y < 0 {
+          
+        }else{
+            if !firstTimeUpScrollFlag{
+                UIView.animate(withDuration: 0.5) {
+                    DispatchQueue.main.async {
+                        self.topMenuConstraint.constant = -50.0;
+                        self.view.layoutIfNeeded()
+                    }
+                    self.firstTimeUpScrollFlag = true
+                    
+                }
+            }
+
+//            UIView.animate(withDuration: 0.5) {
+//                self.topMenuConstraint.constant = self.topConstraint;
+//                self.view.layoutIfNeeded()
+//            }
+
+        }
+
+    }
+    
+    
     
     // .....Pragma mark - UITableViewDataSource & UITableViewDelegate implementation ends.....
     

@@ -14,6 +14,9 @@ class ViewController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
     
     
+    @IBOutlet weak var searchTextField: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,6 +55,18 @@ class ViewController: UIViewController {
         
         self.mediaWikiTableView.delegate = self
         self.mediaWikiTableView.dataSource = self;
+    }
+    
+    
+    
+    @IBAction func searchItem(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func clearSearch(_ sender: UIButton) {
+        
+        self.searchTextField.text = nil
+        
     }
     
     func addSearchController(){
@@ -133,6 +148,18 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        let wikiDetailController = self.storyboard?.instantiateViewController(withIdentifier: "wikidetail") as? WikiDetailController
+        let selectedItem = filteredProductArray[indexPath.row] as SearchItemModel
+        wikiDetailController?.searchItemDetailModel = selectedItem
+        
+        DispatchQueue.main.async {
+            self.present(wikiDetailController!, animated: true, completion: nil)
+
+        }
+        
+        
     }
     
     // .....Pragma mark - UITableViewDataSource & UITableViewDelegate implementation ends.....

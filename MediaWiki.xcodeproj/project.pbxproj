@@ -15,6 +15,7 @@
 		9119321020F46C72005A37D1 /* SearchItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9119320F20F46C72005A37D1 /* SearchItemModel.swift */; };
 		9119321220F46C84005A37D1 /* SearchItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9119321120F46C84005A37D1 /* SearchItemCell.swift */; };
 		9119321420F46C90005A37D1 /* SearchItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9119321320F46C90005A37D1 /* SearchItemCell.xib */; };
+		9119321A20F472D6005A37D1 /* WikiDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9119321920F472D6005A37D1 /* WikiDetailController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		9119320F20F46C72005A37D1 /* SearchItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchItemModel.swift; sourceTree = "<group>"; };
 		9119321120F46C84005A37D1 /* SearchItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchItemCell.swift; sourceTree = "<group>"; };
 		9119321320F46C90005A37D1 /* SearchItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchItemCell.xib; sourceTree = "<group>"; };
+		9119321920F472D6005A37D1 /* WikiDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiDetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				911931FF20F46717005A37D1 /* ViewController.swift */,
+				9119321920F472D6005A37D1 /* WikiDetailController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9119321220F46C84005A37D1 /* SearchItemCell.swift in Sources */,
+				9119321A20F472D6005A37D1 /* WikiDetailController.swift in Sources */,
 				9119320020F46717005A37D1 /* ViewController.swift in Sources */,
 				911931FE20F46717005A37D1 /* AppDelegate.swift in Sources */,
 				9119321020F46C72005A37D1 /* SearchItemModel.swift in Sources */,

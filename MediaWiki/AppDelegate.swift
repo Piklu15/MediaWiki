@@ -15,6 +15,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UISearchBar.appearance().tintColor = UIColor.white
+
+
+        
+        let attrs = [
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont(name: "Georgia-Bold", size: 24)!
+        ]
+        
+        UINavigationBar.appearance().titleTextAttributes = attrs
+        
+        
         // Override point for customization after application launch.
         return true
     }

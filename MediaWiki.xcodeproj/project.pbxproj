@@ -12,6 +12,9 @@
 		9119320320F46717005A37D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9119320120F46717005A37D1 /* Main.storyboard */; };
 		9119320520F46719005A37D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9119320420F46719005A37D1 /* Assets.xcassets */; };
 		9119320820F46719005A37D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9119320620F46719005A37D1 /* LaunchScreen.storyboard */; };
+		9119321020F46C72005A37D1 /* SearchItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9119320F20F46C72005A37D1 /* SearchItemModel.swift */; };
+		9119321220F46C84005A37D1 /* SearchItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9119321120F46C84005A37D1 /* SearchItemCell.swift */; };
+		9119321420F46C90005A37D1 /* SearchItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9119321320F46C90005A37D1 /* SearchItemCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		9119320420F46719005A37D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9119320720F46719005A37D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9119320920F46719005A37D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9119320F20F46C72005A37D1 /* SearchItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchItemModel.swift; sourceTree = "<group>"; };
+		9119321120F46C84005A37D1 /* SearchItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchItemCell.swift; sourceTree = "<group>"; };
+		9119321320F46C90005A37D1 /* SearchItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchItemCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +61,48 @@
 			isa = PBXGroup;
 			children = (
 				911931FD20F46717005A37D1 /* AppDelegate.swift */,
-				911931FF20F46717005A37D1 /* ViewController.swift */,
+				9119321520F471ED005A37D1 /* Controller */,
+				9119321620F471FB005A37D1 /* Model */,
+				9119321720F47216005A37D1 /* View */,
+				9119321820F47221005A37D1 /* Xib */,
 				9119320120F46717005A37D1 /* Main.storyboard */,
 				9119320420F46719005A37D1 /* Assets.xcassets */,
 				9119320620F46719005A37D1 /* LaunchScreen.storyboard */,
 				9119320920F46719005A37D1 /* Info.plist */,
 			);
 			path = MediaWiki;
+			sourceTree = "<group>";
+		};
+		9119321520F471ED005A37D1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				911931FF20F46717005A37D1 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9119321620F471FB005A37D1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9119320F20F46C72005A37D1 /* SearchItemModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9119321720F47216005A37D1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9119321120F46C84005A37D1 /* SearchItemCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9119321820F47221005A37D1 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				9119321320F46C90005A37D1 /* SearchItemCell.xib */,
+			);
+			path = Xib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,6 +163,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9119321420F46C90005A37D1 /* SearchItemCell.xib in Resources */,
 				9119320820F46719005A37D1 /* LaunchScreen.storyboard in Resources */,
 				9119320520F46719005A37D1 /* Assets.xcassets in Resources */,
 				9119320320F46717005A37D1 /* Main.storyboard in Resources */,
@@ -135,8 +177,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9119321220F46C84005A37D1 /* SearchItemCell.swift in Sources */,
 				9119320020F46717005A37D1 /* ViewController.swift in Sources */,
 				911931FE20F46717005A37D1 /* AppDelegate.swift in Sources */,
+				9119321020F46C72005A37D1 /* SearchItemModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

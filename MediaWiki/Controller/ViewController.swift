@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     
     var firstTimeUpScrollFlag = false
     var firstTimeBottomScrollFlag = false
+    var isBookMarksTapped = false
     
     @IBOutlet weak var topMenuConstraint: NSLayoutConstraint!
     var topConstraint : CGFloat = 0.0
@@ -84,6 +85,7 @@ class ViewController: UIViewController {
     @IBAction func clearSearch(_ sender: UIButton) {
         
         self.searchTextField.text = nil
+        isBookMarksTapped = true
         self.showBookMarks()
         
     }
@@ -117,6 +119,7 @@ class ViewController: UIViewController {
         
         DispatchQueue.main.async {
             self.mediaWikiTableView.reloadData()
+            self.isBookMarksTapped = false
             
         }
     }
@@ -190,15 +193,19 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate,UIScrollViewD
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if firstTimeBottomScrollFlag{
-            firstTimeUpScrollFlag = false
-            
-            UIView.animate(withDuration: 0.5) {
-                DispatchQueue.main.async {
-                    self.topMenuConstraint.constant = 0;
-                    self.view.layoutIfNeeded()
-                }
+        
+        
+        if isBookMarksTapped{
+            if firstTimeBottomScrollFlag{
+                firstTimeUpScrollFlag = false
+                
+                UIView.animate(withDuration: 0.5) {
+                    DispatchQueue.main.async {
+                        self.topMenuConstraint.constant = 0;
+                        self.view.layoutIfNeeded()
+                    }
 
+                }
             }
         }
         
@@ -215,7 +222,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate,UIScrollViewD
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+        if isBookMarksTapped{
         if scrollView.contentOffset.y < 0 {
             
             if !firstTimeBottomScrollFlag{
@@ -232,22 +239,18 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate,UIScrollViewD
             }
           
         }else{
-            if !firstTimeUpScrollFlag{
-                UIView.animate(withDuration: 0.5) {
-                    DispatchQueue.main.async {
-                        self.topMenuConstraint.constant = -50.0;
-                        self.view.layoutIfNeeded()
+                if !firstTimeUpScrollFlag{
+                    UIView.animate(withDuration: 0.5) {
+                        DispatchQueue.main.async {
+                            self.topMenuConstraint.constant = -50.0;
+                            self.view.layoutIfNeeded()
+                        }
+                        self.firstTimeUpScrollFlag = true
+                        
                     }
-                    self.firstTimeUpScrollFlag = true
-                    
                 }
+
             }
-
-//            UIView.animate(withDuration: 0.5) {
-//                self.topMenuConstraint.constant = self.topConstraint;
-//                self.view.layoutIfNeeded()
-//            }
-
         }
 
     }
